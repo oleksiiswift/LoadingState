@@ -28,7 +28,7 @@ class DataLoadingViewController: UIViewController, LoadingHandler {
 	}
 }
 
-extension DataLoadingViewController: AppearanceUpdatable {
+extension DataLoadingViewController {
 	
 	func setupUI() {
 	
@@ -36,6 +36,6 @@ extension DataLoadingViewController: AppearanceUpdatable {
 	
 	func setupAppearance() {
 		
-		self.view.backgroundColor = theme.backgroundColor
+		self.view.backgroundColor = .gray
 	}
 }

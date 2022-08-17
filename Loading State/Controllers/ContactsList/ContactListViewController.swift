@@ -80,15 +80,10 @@ class ContactsListViewController: UIViewController {
 		
 		self.contactDataSource.didSelectDialContact = { contact in
 //            #warning("TODO") /// handle select phone numbers from action sheet
-			if let number = contact.phoneNumbers.first {
-				CallServiceCoordinator.shared.dial(contact, with: number.number)
-			}
+			if let _ = contact.phoneNumbers.first {}
 		}
 		
 		self.contactDataSource.didSelectViewContactsRecords = { contact in
-			
-			guard !contact.callResults.isEmpty else { return }
-			
 			self.showRecords(of: contact)
 		}
 	}
@@ -96,26 +91,17 @@ class ContactsListViewController: UIViewController {
 
 extension ContactsListViewController: ContactDataSourceDelegate {
 	
-	func dial(phoneNumber: ContactPhoneNumber, with contact: Contact) {
-		CallServiceCoordinator.shared.dial(contact, with: phoneNumber.number)
-	}
+	func dial(phoneNumber: ContactPhoneNumber, with contact: Contact) {}
 	
 	func doNothingAction() {}
 }
 
 extension ContactsListViewController {
 	
-	private func showRecords(of contact: Contact) {
-
-		let storyboard = UIStoryboard(name: Constants.identifier.storyboard.records, bundle: nil)
-		let viewController = storyboard.instantiateViewController(withIdentifier: Constants.identifier.viewController.contactRecords) as! ContactRecordsViewController
-		viewController.contact = contact
-		viewController.hidesBottomBarWhenPushed = true
-		self.navigationController?.pushViewController(viewController, animated: true)
-	}
+	private func showRecords(of contact: Contact) {}
 }
 
-extension ContactsListViewController: AppearanceUpdatable {
+extension ContactsListViewController {
 	
 	func setupUI() {
 		
@@ -135,9 +121,9 @@ extension ContactsListViewController: AppearanceUpdatable {
 	func setupHeaderFooterView() {
 		
 		let headerHeight: CGFloat = 68
-		let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Utilites.screenWidth, height: headerHeight))
+		let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: headerHeight))
 		headerView.backgroundColor = .clear
-		searchBar.frame = CGRect(x: 0, y: 0, width: Utilites.screenWidth, height: 60)
+		searchBar.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 60)
 		headerView.addSubview(searchBar)
 		tableView.contentOffset = CGPoint(x: 0, y: headerHeight)
 		tableView.tableHeaderView = headerView

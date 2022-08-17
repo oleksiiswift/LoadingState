@@ -1,4 +1,5 @@
 import RealmSwift
+import UIKit
 
 struct ContactModel {
 	let contact: Contact

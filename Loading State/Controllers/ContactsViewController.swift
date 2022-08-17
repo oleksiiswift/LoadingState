@@ -77,7 +77,6 @@ extension ContactsViewController {
 	}
 }
 
-
 extension ContactsViewController {
 	
 	func setupUI() {}
